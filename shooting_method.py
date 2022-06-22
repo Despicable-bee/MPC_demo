@@ -113,7 +113,8 @@ def loss_function(params: List[float], xr: float, ur: float, x0: List[float],
         # Compute running cost for current step
         xkr = convert_x_y_to_radius(xk, yk)    
         stateCost = np.linalg.norm(xkr - xr + nanCorrector) * Qlist[k + 1]
-        controlCost = np.linalg.norm(params[k] - ur + nanCorrector) * Rlist[k + 1]
+        controlCost = np.linalg.norm(params[k] - ur + nanCorrector) \
+                * Rlist[k + 1]
 
         # Update the cumulative cost function
         cost += (stateCost + controlCost)

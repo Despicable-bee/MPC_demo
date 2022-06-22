@@ -119,16 +119,10 @@ def loss_function(params: List[Tuple[float, float]], xr: float, ur: float,
 
         uk = invdx(xk[0], xk[1], xkp1[0], xkp1[1], stepSize)
 
-        #print("dx: {}, dy: {}".format(derX, derY))
-
         # Compute running cost for current step
         xkr = convert_x_y_to_radius(xkp1[0], xkp1[1])    
         stateCost = np.linalg.norm(xkr - xr + nanCorrector) * Qlist[k]
         controlCost = np.linalg.norm(uk - ur + nanCorrector) * Rlist[k]
-
-        #print("R value: {}".format(xkr))
-
-        #print("Added cost: {}".format(stateCost + controlCost))
 
         # Update the cost function
         cost += (stateCost + controlCost)
@@ -154,8 +148,6 @@ class SGD():
         self.__xr = xr
 
         self.__init_params__()
-
-        # print(self.__X[1:,:])
 
         loss_gradient = jax.grad(loss_function)
 
@@ -183,8 +175,6 @@ class SGD():
             self.__update__()
 
             if self.__iter % 50 == 0:
-                # logging.info("Control inputs:")
-                # print(self.__U)
                 logger.info("{} epoch - Loss: {}".format(self.__iter, loss))
 
 
