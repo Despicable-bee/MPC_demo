@@ -324,7 +324,7 @@ More trouble comes when we try to implement this method in a computer. You
 
 Just like how we use bits to count up, we can use them to count down.
 
-For instance, one bit position could represnet 1/2, the next 1/4, and so on
+For instance, one bit position could represent 1/2, the next 1/4, and so on
 
 Generally speaking, the further right of the decimal place you go, the value represented by that bit equals the following formula:
 
